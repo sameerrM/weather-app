@@ -15,6 +15,7 @@ class App extends React.Component {
     tempMax: '',
     humidity: '',
     decription: '',
+    wind: '',
     icon: '',
     error: ''
   }
@@ -27,7 +28,6 @@ class App extends React.Component {
     const data = await api_call.json();
 
     if (city && country) {
-      console.log(data);
       this.setState({
         temperature: data.main.temp,
         tempMin: data.main.temp_min,
@@ -37,6 +37,9 @@ class App extends React.Component {
         humidity: data.main.humidity,
         description: data.weather[0].description,
         icon: data.weather[0].icon,
+        wind: data.wind.speed,
+        sunrise: data.sys.sunrise,
+        sunset: data.sys.sunset,
         error: ''
       })
     } else {
@@ -47,6 +50,9 @@ class App extends React.Component {
         humidity: '',
         description: '',
         icon: '',
+        wind: '',
+        sunrise: '',
+        sunset: '',
         error: 'Please enter the value.'
       })
     }
@@ -71,6 +77,9 @@ class App extends React.Component {
                     country={this.state.country}
                     description={this.state.description}
                     icon={this.state.icon}
+                    wind={this.state.wind}
+                    sunrise={this.state.sunrise}
+                    sunset={this.state.sunset}
                     error={this.state.error}
                   />
                 </div>
